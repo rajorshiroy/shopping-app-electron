@@ -5,5 +5,18 @@
 </head>
 <body>
 <h1>Shopping List</h1>
+<ul>
+
+</ul>
 </body>
+<script>
+    const {ipcRenderer} = require('electron');
+    const listItems = document.querySelector('ul');
+    ipcRenderer.on('item:add', (event, item) => {
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(item);
+        li.appendChild(itemText);
+        listItems.appendChild(li);
+    })
+</script>
 </html>
