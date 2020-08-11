@@ -1,0 +1,15 @@
+{
+  "name": "shopping-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Rajorshi Roy",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.2.0"
+  }
+}
