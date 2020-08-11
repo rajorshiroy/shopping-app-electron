@@ -2,21 +2,43 @@
 <html lang="en">
 <head>
     <title>Shopping List</title>
+    <link rel="stylesheet" href="materialize.css">
 </head>
 <body>
-<h1>Shopping List</h1>
-<ul>
-
-</ul>
+<nav>
+    <div class="nav-wrapper">
+        <a href="" class="brand-logo center">Shopping List</a>
+    </div>
+</nav>
+<ul></ul>
 </body>
 <script>
     const {ipcRenderer} = require('electron');
     const listItems = document.querySelector('ul');
+
+    // add item
     ipcRenderer.on('item:add', (event, item) => {
         const li = document.createElement('li');
         const itemText = document.createTextNode(item);
+        listItems.className = 'collection';
         li.appendChild(itemText);
+        li.className = 'collection-item'
         listItems.appendChild(li);
     })
+
+    // clear items
+    ipcRenderer.on('item:clear', (event => {
+        listItems.innerHTML = '';
+        listItems.className = '';
+    }))
+
+    // remove item
+    listItems.addEventListener('dblclick', (event) => {
+        event.target.remove();
+        if (listItems.children.length === 0)
+            listItems.className = '';
+    })
+
+
 </script>
 </html>

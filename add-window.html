@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <title>Add a new item</title>
+    <link rel="stylesheet" href="materialize.css">
 </head>
 <body>
-<form>
-    <div>
-        <label>Enter Item</label>
-        <input type="text" id="item" name="item" autofocus>
-    </div>
-    <button type="submit">Add Item</button>
-</form>
+<div class="container">
+    <form>
+        <div>
+            <label>Enter Item</label>
+            <input type="text" id="item" name="item" autofocus>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light center">Add Item</button>
+    </form>
+</div>
 </body>
 <script>
     const {ipcRenderer} = require('electron');
@@ -18,8 +21,8 @@
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const item = document.querySelector('#item').value;
-        console.log(item);
-        ipcRenderer.send('item:add', item);
+        if (item !== '')
+            ipcRenderer.send('item:add', item);
     })
 </script>
 </html>
